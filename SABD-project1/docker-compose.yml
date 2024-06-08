@@ -1,0 +1,157 @@
+version: '3.8'
+
+services:
+  hdfs-namenode:
+    image: hadoop3-master
+    container_name: master
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - ./hdfs/data:/home/data
+    ports:
+      - "9870:9870"  # Web UI
+      - "8088:8088"
+      - "60010:60010"
+    networks:
+      - proj_network
+
+  hdfs-datanode-1:
+    image: hadoop3-slave
+    container_name: slave1
+    #volumes:
+    #  - ./hdfs_datanode_data_1:/hadoop/dfs/data
+    ports:
+      - "9864:9864"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    #volumes:
+    #- ./hdfs/slave:/home/data
+    depends_on:
+      - hdfs-namenode
+    networks:
+      - proj_network
+    
+
+  hdfs-datanode-2:
+    image: hadoop3-slave
+    container_name: slave2
+    #volumes:
+    #  - ./hdfs_datanode_data_2:/hadoop/dfs/data
+    ports:
+      - "9863:9864"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    #volumes:
+    #- ./hdfs/slave:/home/data
+    depends_on:
+      - hdfs-namenode
+    networks:
+      - proj_network
+    
+
+  hdfs-datanode-3:
+    image: hadoop3-slave
+    container_name: slave3
+    ports:
+      - "9862:9864" 
+    #volumes:
+    #  - ./hdfs_datanode_data_3:/hadoop/dfs/data
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    #volumes:
+    #- ./hdfs/slave:/home/data
+    depends_on:
+      - hdfs-namenode
+    networks:
+      - proj_network
+    
+
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "7077:7077"  # Spark master port
+      - "8080:8080"  # Spark master web UI 
+      - "4040:4040"   
+      
+    depends_on:
+      - hdfs-namenode
+    networks:
+      - proj_network
+
+  spark-worker-1:
+    image: bitnami/spark:latest
+    container_name: spark-worker-1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"  # Spark worker web UI
+    networks:
+      - proj_network
+
+  spark-worker-2:
+    image: bitnami/spark:latest
+    container_name: spark-worker-2
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+    depends_on:
+      - spark-master
+    ports:
+      - "8083:8081"  # Spark worker web UI
+    networks:
+      - proj_network
+
+  spark-worker-3:
+    image: bitnami/spark:latest
+    container_name: spark-worker-3
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+    depends_on:
+      - spark-master
+    ports:
+      - "8084:8081"  # Spark worker web UI
+    networks:
+      - proj_network
+
+  nifi:
+    image: apache/nifi:latest
+    container_name: nifi
+    ports:
+      - "8090:8090"  # NiFi web UI
+    environment:
+      - NIFI_WEB_HTTP_PORT=8090
+    volumes:
+      - ./nifi/data:/opt/nifi/nifi-current/data
+      - ./nifi/input_data:/input_data
+      - ./nifi/output_data:/output_data
+    networks:
+      - proj_network
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - proj_network
+
+networks:
+  proj_network:
+    driver: bridge
+
