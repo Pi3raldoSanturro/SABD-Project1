@@ -5,6 +5,9 @@ from datetime import datetime
 # Variabile per decidere se stampare o meno i risultati intermedi
 print_intermediate = False
 
+# Variabile per decidere se visualizzare o meno i DAG
+visualize_dag = False
+
 # Start total time counting
 start_total_time = datetime.now()
 
