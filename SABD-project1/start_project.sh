@@ -80,8 +80,8 @@ echo "You can now see all the result files in the nifi/output_data directory"
 echo ""
 echo ""
 
-echo "Now if you want you can ingest the results in MongoDB with Apache Spark. Do you want to do that automatically? [y/n]"
-echo "You can also go to /MongoDB folder and run ./spark_mongo_insert.sh script manually"
+echo "You can go to /MongoDB folder and run ./spark_mongo_insert.sh script manually for ingest the result in MongoDB with Apache Spark"
+echo "Or if you want to do that automatically you can press y, or you can press n for skipping this passage [y/n]"
 echo "For visualizing the results i installed MongoDB compass, a desktop viewer for my MongoDB Queries"
 read input
 
