@@ -3,7 +3,7 @@
 To run the project, follow the steps below:
 
 ## 1. Dataset Preparation
-Ensure that your dataset is named `dataset.csv` and place it in the `dataset` folder.
+Ensure that your dataset is named `dataset.csv` and place it in the `dataset` folder. If you download the project from github, create in the main project folder a `dataset` folder , rename the dataset in `dataset.csv` and insert it in the `dataset`folder and follow other instructions.
 
 ## 2. Start Project Script
 Run the main script `start_project.sh` to initiate the project.
