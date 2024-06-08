@@ -113,8 +113,9 @@ print("Execution time for saving: {}".format(save_execution_time))
 # Print total program execution time
 print("Total program execution time: {}".format(total_execution_time))
 
-# print("Now you can check the DAG at http:localhost:4040, press ANY KEY for ending the program\n")
-# input()
+if visualize_dag:
+    print("You can check the DAG at http:localhost:4040, press CTRL C for stopping the program and close the spark session:")
+    input()
 
 print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
