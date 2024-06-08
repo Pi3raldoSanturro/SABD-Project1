@@ -4,7 +4,7 @@
 # It's assumed that the Spark container is running and named 'spark-master'.
 # You can change the NUM_COR variable to change the number of executor cores. MAX 3
 
-NUM_COR=3 
+NUM_COR=1 
 
 # Copy the query files into the Spark container
 docker cp ./Spark/Queries/Query1.py spark-master:/tmp/Query1.py
