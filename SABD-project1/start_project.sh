@@ -82,11 +82,11 @@ echo ""
 
 echo "Now if you want you can ingest the results in MongoDB with Apache Spark. Do you want to do that automatically? [y/n]"
 echo "You can also go to /MongoDB folder and run ./spark_mongo_insert.sh script manually"
+echo "For visualizing the results i installed MongoDB compass, a desktop viewer for my MongoDB Queries"
 read input
 
 if [ "$input" = "y" ]; then
     gnome-terminal --title="MongoDB bash" --wait -- bash -c "./MongoDB/spark_mongo_insert.sh; ; exec bash"
-    echo "For visualizing the results i installed MongoDB compass, a desktop viewer for my MongoDB Queries"
 fi
 
 echo ""
