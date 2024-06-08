@@ -80,7 +80,8 @@ echo "You can now see all the result files in the nifi/output_data directory"
 echo ""
 echo ""
 
-echo "Now if you want you can ingest the results in MongoDB with Apache Spark. Do you want to do that? [y/n]"
+echo "Now if you want you can ingest the results in MongoDB with Apache Spark. Do you want to do that automatically? [y/n]"
+echo "You can also go to /MongoDB folder and run ./spark_mongo_insert.sh script manually"
 read input
 
 if [ "$input" = "y" ]; then
