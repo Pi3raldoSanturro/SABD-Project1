@@ -81,13 +81,14 @@ echo ""
 echo ""
 
 echo "You can go to /MongoDB folder and run ./spark_mongo_insert.sh script manually for ingest the result in MongoDB with Apache Spark"
-echo "Or if you want to do that automatically you can press y, or you can press n for skipping this passage [y/n]"
+# echo "Or if you want to do that automatically you can press y, or you can press n for skipping this passage [y/n]"
 echo "For visualizing the results i installed MongoDB compass, a desktop viewer for my MongoDB Queries"
+echo "Press ENTER if you want to go ahead with the project"
 read input
 
-if [ "$input" = "y" ]; then
-    gnome-terminal --title="MongoDB bash" --wait -- bash -c "./MongoDB/spark_mongo_insert.sh; ; exec bash"
-fi
+# if [ "$input" = "y" ]; then
+#     gnome-terminal --title="MongoDB bash" --wait -- bash -c "./MongoDB/spark_mongo_insert.sh; ; exec bash"
+# fi
 
 echo ""
 echo ""
