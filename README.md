@@ -41,7 +41,7 @@ Run the main script `start_project.sh` to initiate the project.
 
 ## 4. Results
 
-Downloading results are visible in the `nifi/nifi_output` folder. The project results are in `Results` folder.
+Downloading results are visible in the `nifi/nifi_output` folder. The project results are in `Results` folder. You can also see the results in MongoDB Compass.
 
 
 
